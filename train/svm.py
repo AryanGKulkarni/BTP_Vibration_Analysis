@@ -1,8 +1,8 @@
 import pandas as pd
 
-normal_data = pd.read_csv('./Datasets/normal.csv', header=None, nrows=2000)
-v_misalignment_data = pd.read_csv('./Datasets/vertical-misalignment.csv', header=None, nrows=2000)
-h_misalignment_data = pd.read_csv('./Datasets/horizontal-misalingment.csv', header=None, nrows=2000)
+normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\12.288.csv", header=None, nrows=200)
+v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\12.0832.csv", header=None, nrows=200)
+h_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\horizontal-misalignment\2.0mm\12.288.csv", header=None, nrows=200)
 
 column_names = ['tachometer_signal', 'underhang_accelerometer_axial', 'underhang_accelerometer_radial',
                 'underhang_accelerometer_tangential', 'overhang_accelerometer_axial', 'overhang_accelerometer_radial',
