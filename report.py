@@ -25,7 +25,7 @@ y_test = data['label']                 # Labels
 
 scaler = joblib.load('./Models/scaler.pkl') 
 
-model = joblib.load('./Models/gnb_model.pkl')
+model = joblib.load('./Models/svm_model.pkl')
 X_test_scaled = scaler.transform(X_test)
 print("Test Started")
 
@@ -35,7 +35,7 @@ y_pred = model.predict(X_test)
 report = classification_report(y_test, y_pred)
 
 
-with open('./Reports/gnb_report.txt', 'w') as f:
+with open('./Reports/svm_report.txt', 'w') as f:
     f.write(report)
 
-print("Classification report saved to 'gnb_report.txt'.")
+print("Classification report saved to 'svm_report.txt'.")

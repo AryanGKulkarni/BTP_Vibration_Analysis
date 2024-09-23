@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import random
 import data_loader
+import joblib
 
 X_train, y_train = data_loader.load_data()
 
