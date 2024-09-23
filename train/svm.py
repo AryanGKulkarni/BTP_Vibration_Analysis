@@ -1,4 +1,6 @@
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import joblib
 
 normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\12.288.csv", header=None, nrows=200)
 v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\12.0832.csv", header=None, nrows=200)
@@ -20,17 +22,20 @@ data = pd.concat([normal_data, h_misalignment_data, v_misalignment_data], axis=0
 
 from sklearn.model_selection import train_test_split
 
-X = data.drop(columns=['label'])  # Features
-y = data['label']                 # Labels
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train = data.drop(columns=['label'])  # Features
+y_train = data['label']                 # Labels
 
 from sklearn import svm
 
 print("Training Started")
 
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+
+joblib.dump(scaler, './Models/scaler.pkl')
+
 svmmodel = svm.SVC()
-svmmodel.fit(X_train, y_train)
+svmmodel.fit(X_train_scaled, y_train)
 
 print("Training Done")
 

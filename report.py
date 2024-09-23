@@ -29,7 +29,7 @@ model = joblib.load('./Models/svm_model.pkl')
 X_test_scaled = scaler.transform(X_test)
 print("Test Started")
 
-y_pred = model.predict(X_test)
+y_pred = model.predict(X_test_scaled)
 
 # Generate the classification report
 report = classification_report(y_test, y_pred)
