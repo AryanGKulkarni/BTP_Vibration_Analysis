@@ -2,9 +2,9 @@ import pandas as pd
 import joblib
 from sklearn.metrics import classification_report
 
-normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\14.336.csv", header=None, nrows=30)
-v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=30)
-h_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=30)
+normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\14.336.csv", header=None, nrows=15)
+v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=15)
+h_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=15)
 
 column_names = ['tachometer_signal', 'underhang_accelerometer_axial', 'underhang_accelerometer_radial',
                 'underhang_accelerometer_tangential', 'overhang_accelerometer_axial', 'overhang_accelerometer_radial',
@@ -25,17 +25,17 @@ y_test = data['label']                 # Labels
 
 scaler = joblib.load('./Models/scaler.pkl') 
 
-model = joblib.load('./Models/svm_model.pkl')
+model = joblib.load('./Models/mlp_model.pkl')
 X_test_scaled = scaler.transform(X_test)
 print("Test Started")
 
-y_pred = model.predict(X_test_scaled)
+y_pred = model.predict(X_test)
 
 # Generate the classification report
 report = classification_report(y_test, y_pred)
 
 
-with open('./Reports/svm_report.txt', 'w') as f:
+with open('./Reports/mlp_report.txt', 'w') as f:
     f.write(report)
 
-print("Classification report saved to 'svm_report.txt'.")
+print("Classification report saved to 'mlp_report.txt'.")
