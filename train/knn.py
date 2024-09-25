@@ -21,12 +21,12 @@ X_train_scaled = scaler.fit_transform(X_train)
 joblib.dump(scaler, './Models/scaler.pkl')
 
 
-knnmodel = KNeighborsClassifier(metric='minkowski', p=2, n_neighbors=5)
+knnmodel = KNeighborsClassifier(n_neighbors=5)
 knnmodel.fit(X_train_scaled, y_train)
 
 print("Training Done")
 
 
 # Save the model to a file
-joblib.dump(knnmodel, './Models/knn_model.pkl')
+joblib.dump(knnmodel, './Models/test/knn_model.pkl')
 print("Model Saved")
