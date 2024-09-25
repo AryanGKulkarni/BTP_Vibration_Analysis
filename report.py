@@ -1,6 +1,7 @@
 import pandas as pd
 import joblib
 from sklearn.metrics import classification_report
+import xgboost as xgb
 
 normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\14.336.csv", header=None, nrows=20)
 v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=20)
@@ -13,6 +14,7 @@ column_names = ['tachometer_signal', 'underhang_accelerometer_axial', 'underhang
 normal_data.columns = column_names
 h_misalignment_data.columns = column_names
 v_misalignment_data.columns = column_names
+model_path = './Models/test/xgb_model.pkl'
 
 normal_data['label'] = 0
 h_misalignment_data['label'] = 1
@@ -25,17 +27,21 @@ y_test = data['label']                 # Labels
 
 scaler = joblib.load('./Models/scaler.pkl') 
 
-model = joblib.load('./Models/test/knn_model.pkl')
+model = joblib.load(model_path)
 X_test_scaled = scaler.transform(X_test)
 print("Test Started")
 
-y_pred = model.predict(X_test_scaled)
+if(model_path.find("xgb")):
+    print("xgb model")
+    X_test = xgb.DMatrix(X_test)
+
+y_pred = model.predict(X_test)
 
 # Generate the classification report
 report = classification_report(y_test, y_pred)
 
 
-with open('./Reports/knn_report.txt', 'w') as f:
+with open('./Reports/xgb_report.txt', 'w') as f:
     f.write(report)
 
-print("Classification report saved to 'knn_report.txt'.")
+print("Classification report saved to 'xgb_report.txt'.")

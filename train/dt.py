@@ -15,5 +15,5 @@ print("Training Done")
 import joblib
 
 # Save the model to a file
-joblib.dump(clf, './Models/dt_model.pkl')
+joblib.dump(clf, './Models/test/dt_model.pkl')
 print("Model Saved")
