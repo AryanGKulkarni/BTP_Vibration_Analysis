@@ -17,7 +17,7 @@ def load_random_files(folder_path, label, n=45):
     data_list = []
     for file in selected_files:
         file_path = os.path.join(folder_path, file)
-        df = pd.read_csv(file_path, header=None, nrows=30)  # Read first 30 rows
+        df = pd.read_csv(file_path, header=None)  # Read first 30 rows
         df.columns = column_names  # Assign only the 8 feature columns
         df['label'] = label  # Add the label column
         data_list.append(df)
