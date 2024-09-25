@@ -3,9 +3,9 @@ import joblib
 from sklearn.metrics import classification_report
 import xgboost as xgb
 
-normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\14.336.csv", header=None, nrows=20)
-v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=20)
-h_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\horizontal-misalignment\2.0mm\21.7088.csv", header=None, nrows=20)
+normal_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\normal\14.336.csv", header=None, nrows=20000)
+v_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\vertical-misalignment\1.90mm\16.1792.csv", header=None, nrows=20000)
+h_misalignment_data = pd.read_csv(r"C:\Users\aryan\Desktop\BTP\Dataset\horizontal-misalignment\2.0mm\21.7088.csv", header=None, nrows=20000)
 
 column_names = ['tachometer_signal', 'underhang_accelerometer_axial', 'underhang_accelerometer_radial',
                 'underhang_accelerometer_tangential', 'overhang_accelerometer_axial', 'overhang_accelerometer_radial',
